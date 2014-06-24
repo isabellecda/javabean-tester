@@ -6,6 +6,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -119,7 +123,13 @@ public class JavaBeanTester {
         } else if (clazz.isEnum()) {
             return clazz.getEnumConstants()[0];
 
-     // Add your own rules here
+        } else if (clazz == List.class) {
+			return Collections.EMPTY_LIST;
+			
+		} else if (clazz == BigDecimal.class) {
+			return BigDecimal.valueOf(1L);
+		
+        // Add your own rules here
             
         } else {
             fail("Unable to build an instance of class " + clazz.getName() + ", please add some code to the " 
